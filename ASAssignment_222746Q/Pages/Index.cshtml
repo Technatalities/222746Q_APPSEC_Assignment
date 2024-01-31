@@ -1,0 +1,58 @@
+﻿@page
+@model IndexModel
+@{
+	ViewData["Title"] = "Home page";
+}
+<html>
+@* 	<head>
+		<meta http-equiv="refresh" content="5;url=/Index" />
+	</head> *@
+
+	<body>
+		<div class="text-center">
+			<h1 class="display-4">Home Page</h1>
+
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th colspan="2" class="text-center">USER INFORMATION</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<th scope="row">Full Name:</th>
+						<td>@Model.FirstName @Model.LastName</td>
+					</tr>
+					<tr>
+						<th scope="row">Gender:</th>
+						<td>@Model.Gender</td>
+					</tr>
+					<tr>
+						<th scope="row">NRIC:</th>
+						<td>@Model.NRIC</td>
+					</tr>
+					<tr>
+						<th scope="row">Email</th>
+						<td>@Model.Email</td>
+					</tr>
+					<tr>
+						<th scope="row">Date of Birth:</th>
+						<td>@Model.DOB.ToShortDateString()</td>
+					</tr>
+					<tr>
+						<th scope="row">Resume File:</th>
+						<td>
+							<a href="~/uploads/@Model.ResumeFilePath" target="_blank">@Model.ResumeFileName</a>
+
+						</td>
+					</tr>
+					<tr>
+						<th scope="row">Who am I:</th>
+						<td>@Html.Raw(@Model.WhoAmI)</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</body>
+
+</html>

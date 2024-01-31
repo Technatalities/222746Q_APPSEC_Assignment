@@ -1,0 +1,150 @@
+﻿@page
+@model ASAssignment_222746Q.Pages.RegisterModel
+@{
+}
+
+<script src="https://www.google.com/recaptcha/api.js"></script>
+<script>
+	function ValidatePassword() {
+		var str = document.getElementById("password").value;
+
+		if (str.length < 12) {
+			document.getElementById("password_checker").innerHTML = "WEAK. Password must be at least 12 characters long.";
+			document.getElementById("password_checker").style.color = "red";
+			return ("Too Short");
+		}
+
+		else if (str.search(/\d/) == -1) {
+			document.getElementById("password_checker").innerHTML = "WEAK. Password must contain at least one digit.";
+			document.getElementById("password_checker").style.color = "red";
+			return ("No Number");
+		}
+
+		else if (str.search(/[a-zA-Z]/) == -1) {
+			document.getElementById("password_checker").innerHTML = "WEAK. Password must contain at least one letter.";
+			document.getElementById("password_checker").style.color = "red";
+			return ("No Alphabetical Character");
+		}
+
+		else if (str.search(/[A-Z]/) == -1) {
+			document.getElementById("password_checker").innerHTML = "WEAK. Password must contain at least one uppercase letter.";
+			document.getElementById("password_checker").style.color = "red";
+			return ("No Uppercase letter");
+		}
+
+		else if (str.search(/[!$#%^&*]/) == -1) {
+			document.getElementById("password_checker").innerHTML = "WEAK. Password must contain at least one special character.";
+			document.getElementById("password_checker").style.color = "red";
+			return ("No Special Characters");
+		}
+
+		document.getElementById("password_checker").innerHTML = "STRONG.";
+		document.getElementById("password_checker").style.color = "green";
+	}
+
+	function onSubmit(token) {
+		document.querySelector('form').submit();
+	}
+</script>
+
+<div class="container mt-5">
+
+	<div class="row justify-content-center align-items-center">
+
+		<div class="col-sm-12 col-md-12 col-lg-4">
+			<h1 class="mb-3">Register </h1>
+
+			<form method="post" enctype="multipart/form-data">
+				<div asp-validation-summary="All" class="text-danger"></div>
+
+				<! -- FIRST NAME AND LAST NAME -->
+				<div class="mb-3 row">
+					<div class="col-md-6">
+						<label class="form-label" asp-for="RModel.FirstName">First Name</label>
+						<input type="text" asp-for="RModel.FirstName" class="form-control" />
+						<span asp-validation-for="RModel.FirstName" class="text-danger"></span>
+					</div>
+					<div class="col-md-6">
+						<label class="form-label" asp-for="RModel.LastName">Last Name</label>
+						<input type="text" asp-for="RModel.LastName" class="form-control" />
+						<span asp-validation-for="RModel.LastName" class="text-danger"></span>
+					</div>
+				</div>
+
+				<! -- GENDER RADIO BUTTONS -->
+				<div class="mb-3">
+					<label class="form-label">Gender: </label>
+					<div class="form-check form-check-inline">
+						<input class="form-check-input" type="radio" name="RModel.Gender" value="Male" checked/>
+						<label class="form-check-label">Male</label>
+					</div>
+					<div class="form-check form-check-inline">
+						<input class="form-check-input" type="radio" name="RModel.Gender" value="Female" />
+						<label class="form-check-label">Female</label>
+					</div>
+				</div>
+
+				<! -- NRIC -->
+				<div class="mb-3">
+					<label class="form-label" asp-for="RModel.NRIC">NRIC</label>
+					<input type="Text" asp-for="RModel.NRIC" class="form-control" />
+					<span asp-validaton-for="RModel.NRIC" class="text-danger"></span>
+				</div>
+
+				<! -- EMAIL -->
+				<div class="mb-3">
+					<label class="form-label" asp-for="RModel.Email">Email Address</label>
+					<input type="Text" asp-for="RModel.Email" class="form-control" />
+					<span asp-validaton-for="RModel.Email" class="text-danger"></span>
+				</div>
+
+				<! -- PASSWORD -->
+				<div class="mb-3">
+					<label class="form-label" asp-for="RModel.Password">Password</label>
+					<input id="password" onkeyup="ValidatePassword()" type="password" asp-for="RModel.Password" class="form-control" />
+					<span asp-validaton-for="RModel.Password" class="text-danger"></span>
+
+					<label id="password_checker">Password Strength</label>
+				</div>
+
+
+				<! -- CONFIRM PASSWORD -->
+				<div class="mb-3">
+					<label class="form-label" asp-for="RModel.ConfirmPassword">Confirm Password</label>
+					<input type="password" asp-for="RModel.ConfirmPassword" class="form-control" />
+					<span asp-validaton-for="RModel.ConfirmPassword" class="text-danger"></span>
+				</div>
+
+				<! -- DATE OF BIRTH -->
+				<div class="mb-3">
+					<label class="form-label" asp-for="RModel.DOB">Date of Birth</label>
+					<input type="date" asp-for="RModel.DOB" class="form-control" />
+					<span asp-validation-for="RModel.DOB" class="text-danger"></span>
+				</div>
+
+				<! -- RESUME FILE -->
+				<div class="mb-3">
+					<label class="form-label" asp-for="RModel.ResumeFile">Resume File</label>
+					<input type="file" accept=".pdf, .docx" asp-for="RModel.ResumeFile" class="form-control" />
+					<span asp-validation-for="RModel.ResumeFile" class="text-danger"></span>
+				</div>
+
+				<! -- WHO AM I -->
+				<div class="mb-3">
+					<label class="form-label" asp-for="RModel.WhoAmI">Who am I?</label>
+					<input type="Text" asp-for="RModel.WhoAmI" class="form-control" />
+					<span asp-validaton-for="RModel.WhoAmI" class="text-danger"></span>
+				</div>
+
+				<! -- SUBMIT BUTTON -->	
+				<div class="mb-3 text-center">
+					<button type="submit" class="btn btn-primary btn-block g-recaptcha"
+							data-sitekey="6Ld21V0pAAAAAChVrNwwA0hSxBMA94cYVhTOmOSI"
+							data-callback="onSubmit">
+						Register
+					</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>

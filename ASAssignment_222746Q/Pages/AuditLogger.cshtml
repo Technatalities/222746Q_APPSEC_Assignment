@@ -1,0 +1,28 @@
+﻿@page
+@model ASAssignment_222746Q.Pages.AuditLoggerModel
+@{
+	ViewData["Title"] = "Audit Log";
+}
+
+<h2>Audit Log</h2>
+<table class="table table-hover table-striped">
+    <thead>
+        <tr>
+            <th>Timestamp</th>
+            <th>User ID</th>
+            <th>Action</th>
+            <th>Details</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var Audit in Model.AuditLogEntries)
+        {
+            <tr>
+                <td>@Audit.Timestamp</td>
+                <td>@Audit.UserId</td>
+                <td>@Audit.ActionsTaken</td>
+                <td>@Audit.Information</td>
+            </tr>
+        }
+    </tbody>
+</table>
