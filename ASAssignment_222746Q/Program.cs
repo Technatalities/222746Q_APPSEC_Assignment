@@ -36,7 +36,7 @@ builder.Services.ConfigureApplicationCookie(options =>
 {
     options.Cookie.Name = "222746Q_AppSec";
     options.Cookie.HttpOnly = true;
-    options.ExpireTimeSpan = TimeSpan.FromMinutes(10);
+    options.ExpireTimeSpan = TimeSpan.FromMinutes(30);
 
     options.LoginPath = "/Login";
 });
@@ -46,7 +46,7 @@ builder.Services.AddDistributedMemoryCache();
 
 builder.Services.AddSession(options =>
 {
-    options.IdleTimeout = TimeSpan.FromMinutes(10);
+    options.IdleTimeout = TimeSpan.FromMinutes(30);
 	options.Cookie.HttpOnly = true;
     options.Cookie.IsEssential = true;
 });

@@ -4,9 +4,11 @@ using ASAssignment_222746Q.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ASAssignment_222746Q.Pages
 {
+	[Authorize]
 	public class ChangePasswordModel : PageModel
 	{
 		private readonly UserManager<ApplicationUser> _userManager;
