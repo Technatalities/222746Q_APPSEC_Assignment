@@ -66,9 +66,9 @@ namespace ASAssignment_222746Q.Pages
 
 
 			var MinutesSinceChange = (DateTime.Now - user.LastChangeDate).Minutes;
-			if (MinutesSinceChange < 5)
+			if (MinutesSinceChange < 3)
 			{
-				ModelState.AddModelError(string.Empty, "Your password must be at least 5 minutes old to be changed.");
+				ModelState.AddModelError(string.Empty, "Your password must be at least 3 minutes old to be changed.");
 				return Page();
 			}
 
